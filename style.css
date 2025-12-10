@@ -1,12 +1,11 @@
 *{ 
-padding: 0;
-margin: 0;
-box-sizing: border-box;
-}
-body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
     font-family: "Comic Neue", cursive;
     font-style: normal;
-    margin: 0;
+}
+body{
     font-size: 1rem;
     background-color: #23282E;
     color: #fff;
@@ -31,6 +30,10 @@ a{
 }
 h1{
     font-size: 2rem;
+    padding-left: 1.5rem;
+}
+h2{
+    font-size: 1.5rem;
     padding-left: 1rem;
 }
 #menu{
@@ -46,3 +49,34 @@ li{
     margin-left: 1rem;
     margin-right: 1rem;
 }
+a:link{
+    color: #fff;
+}
+a:visited{
+    color: #f7f7f7;
+}
+a:hover{
+    color: #a0d8ef;
+}
+#flex-container-1{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10vh;
+    margin-bottom: 15vh;
+    text-align: right;
+    padding-right: 15vw;
+}
+#flex-item-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    padding-right: 5vw;
+    width: auto;
+}
+img{
+    width: 100%;
+}
+
+
+
