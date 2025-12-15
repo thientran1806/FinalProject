@@ -221,4 +221,10 @@ footer{
     #project-sum{
         padding-top: 2vh;
     }
+    #projects{
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
 }
