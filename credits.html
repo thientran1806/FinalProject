@@ -1,81 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Thien | Home</title>
+    <title>Thien Tran | Credits</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@1,100&family=Limelight&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Limelight&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/d7e1a25fa7.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <div id="header">
-            <div id="logo">
-                <a href="index.html">
-                    <h1>Thien Tran</h1>
+        <div class="nav-bar">
+            <div class="logo">
+                <a href="index.html">Thien Tran</a>
+            </div>
+            <nav class="nav-links">
+                <a href="about.html">About</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="ThienResume.pdf" target="_blank">Resume/CV</a>
+                <a href="credits.html">Credits</a>
+                <a href="https://www.linkedin.com/in/trong-thien-tran-61931931b/" target="_blank">
+                    <i class="fa-brands fa-linkedin"></i>
                 </a>
-            </div>
-            <div id="nav">
-                <nav id="menu">
-                    <input type="checkbox" id="hamburger">
-                    <label class="hamburger-icon" for="hamburger"><i class="fa-solid fa-bars"></i></label>
-                    <ul id="items">
-                        <a href="portfolio.html">
-                            <li>Portfolio</li>
-                        </a>
-                        <a href="ThienResume.pdf" target="_blank">
-                            <li>Resume/CV</li>
-                        </a>
-                        <a href="about.html">
-                            <li>About</li>
-                        </a>
-                        <a href="credits.html">
-                            <li>Credits</li>
-                        </a>
-                        <a href="https://www.linkedin.com/in/trong-thien-tran-61931931b/" target="_blank">
-                            <li>
-                                <i class="fa-brands fa-linkedin"></i>
-                            </li>
-                        </a>
-                    </ul>
-                </nav>
-            </div>
+            </nav>
         </div>
     </header>
-    <div id="page-title">
-        <h1>Credits</h1>
-    </div>
-    <div id="flex-container-1">
-        <div id="flex-item-1">
-            <h1>Icons:&nbsp;<a href="https://fontawesome.com/">Fontawesome</a></h1>
-        </div>
-        <div id="flex-item-2">
-            <img src="fontawesome.png" alt="fontawesome-homepage">
-        </div>
-    </div>
-    <div id="flex-container-1">
-        <div id="flex-item-1">
-            <h1>Mockups:&nbsp;<a href="https://mrmockup.com/">MrMockup</a></h1>
-        </div>
-        <div id="flex-item-2">
-            <img src="mrmockup.png" alt="mrmockup-homepage">
-        </div>
-    </div>
-    <div id="flex-container-1">
-        <div id="flex-item-1">
-            <h1>Website:&nbsp;<a href="https://marypyrdol.github.io/index.html">Mary Pyrdol</a></h1>
-        </div>
-        <div id="flex-item-2">
-            <img src="mary.png" alt="mary-homepage">
-        </div>
-    </div>
-    <footer>
-        <p>Copyright 2025 &copy; Code by Thien Tran. Inspired by <a href="https://marypyrdol.github.io/">Mary Pyrdol </a> website.</p>
-    </footer>
     
+    <main>
+        <div class="section">
+            <div class="content credits-content">
+                <div class="credits-header">
+                    <h1>Credits</h1>
+                </div>
+                
+                <div class="credits-grid">
+                    <div class="credit-card">
+                        <div class="credit-icon">
+                            <i class="fa-brands fa-font-awesome"></i>
+                        </div>
+                        <div class="credit-info">
+                            <h2>Font Awesome</h2>
+                            <p>Icons & Graphics</p>
+                            <a href="https://fontawesome.com/" target="_blank" class="credit-link">Visit Site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                        <div class="credit-image">
+                            <img src="fontawesome.png" alt="Font Awesome">
+                        </div>
+                    </div>
+                    
+                    <div class="credit-card">
+                        <div class="credit-icon">
+                            <i class="fa-solid fa-image"></i>
+                        </div>
+                        <div class="credit-info">
+                            <h2>MrMockup</h2>
+                            <p>Mockup Templates</p>
+                            <a href="https://mrmockup.com/" target="_blank" class="credit-link">Visit Site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                        <div class="credit-image">
+                            <img src="mrmockup.png" alt="MrMockup">
+                        </div>
+                    </div>
+                    
+                    <div class="credit-card">
+                        <div class="credit-icon">
+                            <i class="fa-solid fa-palette"></i>
+                        </div>
+                        <div class="credit-info">
+                            <h2>Coding2Go</h2>
+                            <p>Design Inspiration</p>
+                            <a href="https://www.youtube.com/watch?v=gmI5nvzv170" target="_blank" class="credit-link">Visit Site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                        <div class="credit-image">
+                            <img src="coding2go.png" alt="coding2go">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>Copyright 2025 &copy; Code by Thien Tran.</p>
+    </footer>
 </body>
 </html>

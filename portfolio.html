@@ -1,89 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Thien | Home</title>
+    <title>Thien Tran | Portfolio</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@1,100&family=Limelight&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Limelight&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/d7e1a25fa7.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <div id="header">
-            <div id="logo">
-                <a href="index.html">
-                    <h1>Thien Tran</h1>
+        <div class="nav-bar">
+            <div class="logo">
+                <a href="index.html">Thien Tran</a>
+            </div>
+            <nav class="nav-links">
+                <a href="about.html">About</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="ThienResume.pdf" target="_blank">Resume/CV</a>
+                <a href="credits.html">Credits</a>
+                <a href="https://www.linkedin.com/in/trong-thien-tran-61931931b/" target="_blank">
+                    <i class="fa-brands fa-linkedin"></i>
                 </a>
-            </div>
-            <div id="nav">
-                <nav id="menu">
-                    <input type="checkbox" id="hamburger">
-                    <label class="hamburger-icon" for="hamburger"><i class="fa-solid fa-bars"></i></label>
-                    <ul id="items">
-                        <a href="portfolio.html">
-                            <li>Portfolio</li>
-                        </a>
-                        <a href="ThienResume.pdf" target="_blank">
-                            <li>Resume/CV</li>
-                        </a>
-                        <a href="about.html">
-                            <li>About</li>
-                        </a>
-                        <a href="credits.html">
-                            <li>Credits</li>
-                        </a>
-                        <a href="https://www.linkedin.com/in/trong-thien-tran-61931931b/" target="_blank">
-                            <li>
-                                <i class="fa-brands fa-linkedin"></i>
-                            </li>
-                        </a>
-                    </ul>
-                </nav>
-            </div>
+            </nav>
         </div>
     </header>
-    <div id="page-title">
-        <h1>Portfolio</h1>
-    </div>
-    <div id="projects">
-        <div id="cat">
-            <a href="#">
-                <img src="fenwayhealth.jpg" alt="fenwayhealth-project">
-            </a>
-            <h1>Fenway Health Mobile Redesign</h1>
-            <h2>Healthcare app - UI/UX Design </h2>
-        </div>
-        <div id="cat">
-            <a href="#">
-                <img src="grubhub.jpg" alt="grubhub-project">
-            </a>
-            <h1>Grubhub Redesign</h1>
-            <h2>Delivery app - UI/UX Design</h2>
-        </div>
-        <div id="cat">
-            <a href="#">
-                <img src="poster.jpg" alt="poster-project">
-            </a>
-            <h1>Discovery Space</h1>
-            <h2>Design a “Mini-Museum or Discovery Space or Learning Center -
-                Illustration, Graphic Design & Branding </h2>
-        </div>
-        <div id="cat">
-            <a href="#">
-                <img src="thegreenline.jpg" alt="mbta-project">
-            </a>
-            <h1>Travel by rail</h1>
-            <h2>Design a poster to promote ridership on the MBTA.
-                Illustration, Graphic Design </h2>
-        </div>
-    </div>
-    <footer>
-        <p>Copyright 2025 &copy; Code by Thien Tran. Inspired by <a href="https://marypyrdol.github.io/">Mary Pyrdol </a> website.</p>
-    </footer>
     
+    <main>
+        <div class="section">
+            <h1>Portfolio</h1>
+            <!-- My portfolio content here -->
+            <div id="carousel">
+                <div id="card">
+                    <img src="fenwayhealth.jpg" alt="Fenway Health Mobile Redesign">
+                    <h3>Fenway Health</h3>
+                </div>
+                <div id="card">
+                    <img src="poster.jpg" alt="Discovery Space">
+                    <h3>Discovery Space</h3>
+                </div>
+                <div id="card">
+                    <img src="grubhub.jpg" alt="Grubhub Redesign">
+                    <h3>Grubhub</h3>
+                </div>
+                <div id="card">
+                    <img src="thegreenline.jpg" alt="Travel by rail">
+                    <h3>Travel by rail</h3>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>Copyright 2025 &copy; Code by Thien Tran.</p>
+    </footer>
 </body>
 </html>
