@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Fenway Health | Case Study — Thien Tran</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d7e1a25fa7.js" crossorigin="anonymous"></script>
+    <style>
+        /* ── Case Study Overrides & New Styles ── */
+        :root {
+            --accent: #ffffff;
+            --muted: rgba(255,255,255,0.45);
+            --border: rgba(255,255,255,0.12);
+            --tag-bg: rgba(255,255,255,0.07);
+        }
+
+        /* Hero */
+        .cs-hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0 3rem 5rem;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .cs-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .cs-hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.35;
+        }
+
+        .cs-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, #000 40%, transparent 100%);
+        }
+
+        .cs-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .cs-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .cs-label::before {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 1px;
+            background: var(--muted);
+        }
+
+        .cs-hero-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: -1px;
+            margin-bottom: 2rem;
+            color: #ffffff;
+        }
+
+        .cs-hero-title em {
+            font-style: italic;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .cs-meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+        }
+
+        .cs-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .cs-meta-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .cs-meta-value {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: #ffffff;
+        }
+
+        /* Tags */
+        .cs-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .cs-tag {
+            font-size: 0.75rem;
+            padding: 0.3rem 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: rgba(255,255,255,0.7);
+            background: var(--tag-bg);
+        }
+
+        /* Body Layout */
+        .cs-body {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 6rem 3rem;
+        }
+
+        /* Section blocks */
+        .cs-section {
+            margin-bottom: 6rem;
+        }
+
+        .cs-section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .cs-section-label::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 1px;
+            background: var(--muted);
+        }
+
+        .cs-section h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .cs-section p {
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 1.25rem;
+        }
+
+        /* Pull quote */
+        .cs-quote {
+            border-left: 2px solid #ffffff;
+            padding: 1rem 2rem;
+            margin: 3rem 0;
+        }
+
+        .cs-quote p {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            font-weight: 400;
+            color: #ffffff;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Stats row */
+        .cs-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 3rem 0;
+        }
+
+        .cs-stat {
+            background: #000;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .cs-stat-num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            line-height: 1;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .cs-stat-desc {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Full-width image */
+        .cs-full-img {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 4rem 0;
+        }
+
+        .cs-full-img img {
+            width: 100%;
+            height: 60vh;
+            object-fit: cover;
+            display: block;
+        }
+
+        .cs-full-img figcaption {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--muted);
+            padding: 0.75rem;
+        }
+
+        /* 2-col image grid */
+        .cs-img-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+
+        .cs-img-grid img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            border-radius: 6px;
+            display: block;
+        }
+
+        /* Process steps */
+        .cs-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .cs-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.25s;
+        }
+
+        .cs-step:last-child {
+            border-bottom: none;
+        }
+
+        .cs-step:hover {
+            background: rgba(255,255,255,0.03);
+        }
+
+        .cs-step-num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: rgba(255,255,255,0.2);
+            line-height: 1;
+            min-width: 2rem;
+        }
+
+        .cs-step-content h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+        }
+
+        .cs-step-content p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Outcomes / learnings list */
+        .cs-list {
+            list-style: none;
+            margin: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .cs-list li {
+            display: flex;
+            gap: 1rem;
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.6;
+        }
+
+        .cs-list li::before {
+            content: '→';
+            color: rgba(255,255,255,0.35);
+            flex-shrink: 0;
+            margin-top: 0.05em;
+        }
+
+        /* Back / next nav */
+        .cs-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 3rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .cs-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: opacity 0.25s;
+        }
+
+        .cs-nav a:hover {
+            opacity: 0.6;
+        }
+
+        .cs-nav-next {
+            text-align: right;
+        }
+
+        .cs-nav-next-label {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .cs-nav-next-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.2rem;
+        }
+
+        /* Scroll-in animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cs-hero {
+                padding: 0 1.5rem 3rem;
+            }
+            .cs-body {
+                padding: 4rem 1.5rem;
+            }
+            .cs-stats {
+                grid-template-columns: 1fr;
+            }
+            .cs-img-grid {
+                grid-template-columns: 1fr;
+            }
+            .cs-nav {
+                padding: 2rem 1.5rem;
+                flex-direction: column;
+                gap: 2rem;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── NAV (same as your site) ── -->
+    <header>
+        <div class="nav-bar">
+            <div class="logo">
+                <a href="index.html">Thien Tran</a>
+            </div>
+            <nav class="nav-links">
+                <a href="about.html">About</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="ThienResume.pdf" target="_blank">Resume/CV</a>
+                <a href="credits.html">Credits</a>
+                <a href="https://www.linkedin.com/in/trong-thien-tran-61931931b/" target="_blank">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ── HERO ── -->
+    <section class="cs-hero">
+        <div class="cs-hero-bg">
+            <!-- Replace src with your actual hero image -->
+            <img src="fenwayhealth.jpg" alt="Fenway Health Case Study">
+        </div>
+
+        <div class="cs-hero-content">
+            <p class="cs-label">Case Study — UX / Mobile Design</p>
+
+            <h1 class="cs-hero-title">
+                Fenway Health<br>
+                <em>Mobile Redesign</em>
+            </h1>
+
+            <div class="cs-meta-row">
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Role</span>
+                    <span class="cs-meta-value">UX Designer</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Timeline</span>
+                    <span class="cs-meta-value">8 weeks</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Tools</span>
+                    <span class="cs-meta-value">Figma, FigJam</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Tags</span>
+                    <div class="cs-tags">
+                        <span class="cs-tag">Mobile</span>
+                        <span class="cs-tag">Healthcare</span>
+                        <span class="cs-tag">Accessibility</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── BODY ── -->
+    <article class="cs-body">
+
+        <!-- Overview -->
+        <section class="cs-section fade-up">
+            <p class="cs-section-label">01 — Overview</p>
+            <h2>Making healthcare navigation easier for an underserved community</h2>
+            <p>
+                Fenway Health is a Boston-based community health center serving LGBTQ+ individuals
+                and those living with HIV/AIDS. Their existing mobile experience had grown fragmented
+                over time — patients struggled to find services, book appointments, and access resources
+                in an interface that hadn't kept up with modern expectations.
+            </p>
+            <p>
+                This project focused on redesigning the mobile app to reduce friction, improve
+                accessibility, and better reflect the warmth and inclusivity of Fenway Health's mission.
+            </p>
+        </section>
+
+        <!-- Stats -->
+        <div class="cs-stats fade-up">
+            <div class="cs-stat">
+                <span class="cs-stat-num">3×</span>
+                <span class="cs-stat-desc">faster to book appointments</span>
+            </div>
+            <div class="cs-stat">
+                <span class="cs-stat-num">78%</span>
+                <span class="cs-stat-desc">of users found it "easy" or "very easy"</span>
+            </div>
+            <div class="cs-stat">
+                <span class="cs-stat-num">12</span>
+                <span class="cs-stat-desc">user interviews conducted</span>
+            </div>
+        </div>
+
+        <!-- Problem -->
+        <section class="cs-section fade-up">
+            <p class="cs-section-label">02 — Problem</p>
+            <h2>What was getting in the way?</h2>
+            <p>
+                Patients reported confusion navigating between services and resources. Key tasks like
+                refilling prescriptions or finding a provider required too many taps through menus that
+                weren't organized around how people actually think about their healthcare.
+            </p>
+
+            <div class="cs-quote">
+                <p>"I gave up trying to find the mental health resources and just called instead."</p>
+            </div>
+
+            <p>
+                Through heuristic analysis and user interviews, three core pain points emerged:
+                information architecture mismatches, low contrast / accessibility issues, and a lack
+                of clear wayfinding between the app's sections.
+            </p>
+        </section>
+
+        <!-- Full-width image -->
+        <figure class="cs-full-img fade-up">
+            <!-- Replace src with your actual screens / mockup image -->
+            <img src="fenwayhealth.jpg" alt="Fenway Health existing screens audit">
+            <figcaption>Existing app screens — heuristic evaluation</figcaption>
+        </figure>
+
+        <!-- Process -->
+        <section class="cs-section fade-up">
+            <p class="cs-section-label">03 — Process</p>
+            <h2>Research → define → design → test</h2>
+            <p>
+                The project followed a double-diamond approach, with an emphasis on centering LGBTQ+
+                patients and people living with HIV/AIDS throughout every phase.
+            </p>
+
+            <div class="cs-steps">
+                <div class="cs-step">
+                    <span class="cs-step-num">1</span>
+                    <div class="cs-step-content">
+                        <h4>Discovery & Research</h4>
+                        <p>Conducted 12 user interviews and a competitive audit of 5 comparable health apps. Synthesised findings into affinity maps to surface patterns.</p>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <span class="cs-step-num">2</span>
+                    <div class="cs-step-content">
+                        <h4>Define & Synthesise</h4>
+                        <p>Created 3 personas and journey maps that highlighted the key moments of friction. Established a clear problem statement and design principles.</p>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <span class="cs-step-num">3</span>
+                    <div class="cs-step-content">
+                        <h4>Ideation & Wireframing</h4>
+                        <p>Ran two collaborative sketching sessions before moving to mid-fidelity wireframes in Figma. Tested 3 IA structures with card sorting.</p>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <span class="cs-step-num">4</span>
+                    <div class="cs-step-content">
+                        <h4>Prototype & Usability Testing</h4>
+                        <p>Built a high-fidelity interactive prototype and ran two rounds of moderated usability tests with 6 participants each.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design image grid -->
+        <div class="cs-img-grid fade-up">
+            <!-- Replace these with your actual design screens -->
+            <img src="fenwayhealth.jpg" alt="New home screen design">
+            <img src="fenwayhealth.jpg" alt="Appointment booking flow">
+        </div>
+
+        <!-- Solution -->
+        <section class="cs-section fade-up">
+            <p class="cs-section-label">04 — Solution</p>
+            <h2>A navigation system built around patient needs</h2>
+            <p>
+                The redesigned app reorganises content into four clear pillars that match how patients
+                describe their needs: My Care, Resources, Appointments, and Community. A persistent
+                bottom navigation keeps orientation simple at all times.
+            </p>
+            <p>
+                The visual system was updated with improved contrast ratios (WCAG AA compliant),
+                a warmer, more inclusive colour palette, and larger touch targets throughout.
+            </p>
+        </section>
+
+        <!-- Learnings -->
+        <section class="cs-section fade-up">
+            <p class="cs-section-label">05 — Reflections</p>
+            <h2>What I learned</h2>
+            <ul class="cs-list">
+                <li>Inclusive design isn't just about accessibility — it's about making every person feel seen in the product experience.</li>
+                <li>Early IA testing with card sorting saved significant redesign time later in the process.</li>
+                <li>Healthcare contexts require extra attention to language — clinical terms alienated many users during early testing rounds.</li>
+                <li>Two rounds of usability testing revealed issues the first round completely missed; iteration is non-negotiable.</li>
+            </ul>
+        </section>
+
+    </article>
+
+    <!-- ── BOTTOM NAV ── -->
+    <nav class="cs-nav">
+        <a href="portfolio.html">
+            <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
+        </a>
+        <a href="casestudy-discovery.html" class="cs-nav-next">
+            <span class="cs-nav-next-label">Next project</span>
+            <span class="cs-nav-next-title">Discovery Space →</span>
+        </a>
+    </nav>
+
+    <footer>
+        <p>Copyright 2025 &copy; Code by Thien Tran.</p>
+    </footer>
+
+    <script>
+        // Scroll-triggered fade-in
+        const fadeEls = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    // stagger siblings slightly
+                    setTimeout(() => entry.target.classList.add('visible'), i * 60);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        fadeEls.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
