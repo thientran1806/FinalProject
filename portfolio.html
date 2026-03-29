@@ -8,27 +8,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/d7e1a25fa7.js" crossorigin="anonymous"></script>
     <style>
-        /* Make cards clickable */
-        #card a {
-            text-decoration: none;
-            color: inherit;
+        /* Card is now the <a> tag itself */
+        a#card {
             display: flex;
             flex-direction: column;
-            height: 100%;
-        }
-
-        #card {
+            text-decoration: none;
+            color: inherit;
             position: relative;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        #card:hover {
+        a#card:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 40px rgba(255,255,255,0.08);
         }
 
-        /* Hover overlay */
+        /* pointer-events: none means the overlay never intercepts clicks */
         .card-overlay {
             position: absolute;
             inset: 0;
@@ -39,9 +35,10 @@
             opacity: 0;
             transition: opacity 0.3s ease;
             border-radius: .5em;
+            pointer-events: none;
         }
 
-        #card:hover .card-overlay {
+        a#card:hover .card-overlay {
             opacity: 1;
         }
 
@@ -55,7 +52,7 @@
             border-radius: 999px;
         }
 
-        #card h3 {
+        a#card h3 {
             color: #ffffff;
             margin-top: 0.5em;
         }
@@ -84,37 +81,29 @@
             <h1>Portfolio</h1>
             <div id="carousel">
 
-                <div id="card">
+                <a id="card" href="casestudy-fenway.html">
                     <div class="card-overlay"><span>View Case Study</span></div>
-                    <a href="casestudy-fenway.html">
-                        <img src="fenwayhealth.jpg" alt="Fenway Health Mobile Redesign">
-                        <h3>Fenway Health</h3>
-                    </a>
-                </div>
+                    <img src="fenwayhealth.jpg" alt="Fenway Health Mobile Redesign">
+                    <h3>Fenway Health</h3>
+                </a>
 
-                <div id="card">
+                <a id="card" href="casestudy-discovery.html">
                     <div class="card-overlay"><span>View Case Study</span></div>
-                    <a href="casestudy-discovery.html">
-                        <img src="poster.jpg" alt="Discovery Space">
-                        <h3>Discovery Space</h3>
-                    </a>
-                </div>
+                    <img src="poster.jpg" alt="Discovery Space">
+                    <h3>Discovery Space</h3>
+                </a>
 
-                <div id="card">
+                <a id="card" href="casestudy-grubhub.html">
                     <div class="card-overlay"><span>View Case Study</span></div>
-                    <a href="casestudy-grubhub.html">
-                        <img src="grubhub.jpg" alt="Grubhub Redesign">
-                        <h3>Grubhub</h3>
-                    </a>
-                </div>
+                    <img src="grubhub.jpg" alt="Grubhub Redesign">
+                    <h3>Grubhub</h3>
+                </a>
 
-                <div id="card">
+                <a id="card" href="casestudy-greenline.html">
                     <div class="card-overlay"><span>View Case Study</span></div>
-                    <a href="casestudy-greenline.html">
-                        <img src="thegreenline.jpg" alt="Travel by rail">
-                        <h3>Travel by rail</h3>
-                    </a>
-                </div>
+                    <img src="thegreenline.jpg" alt="Travel by rail">
+                    <h3>Travel by rail</h3>
+                </a>
 
             </div>
         </div>
