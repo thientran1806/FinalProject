@@ -16,6 +16,17 @@
             color: inherit;
             position: relative;
             cursor: pointer;
+            /* preserve original #card styles from style.css */
+            scroll-snap-align: start;
+            flex: 0 0 30em;
+            aspect-ratio: 5 / 3;
+            height: 16em;
+            background-color: #000000;
+            padding: 1em;
+            border-radius: .5em;
+            text-align: center;
+            align-content: center;
+            overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -24,7 +35,20 @@
             box-shadow: 0 12px 40px rgba(255,255,255,0.08);
         }
 
-        /* pointer-events: none means the overlay never intercepts clicks */
+        a#card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            flex: 1;
+            border-radius: .3em;
+        }
+
+        a#card h3 {
+            color: #ffffff;
+            margin-top: 0.5em;
+        }
+
+        /* pointer-events: none so the overlay never intercepts clicks */
         .card-overlay {
             position: absolute;
             inset: 0;
@@ -52,9 +76,23 @@
             border-radius: 999px;
         }
 
-        a#card h3 {
-            color: #ffffff;
-            margin-top: 0.5em;
+        /* scroll marker dots */
+        a#card::scroll-marker {
+            content: '';
+            height: 1em;
+            width: 1em;
+            background-color: #ffffff;
+            border-radius: 50%;
+        }
+
+        a#card::scroll-marker:target-current {
+            background-color: green;
+        }
+
+        @media screen and (max-width: 768px) {
+            a#card {
+                flex: 0 0 100%;
+            }
         }
     </style>
 </head>
