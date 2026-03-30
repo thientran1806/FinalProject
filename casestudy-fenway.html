@@ -232,11 +232,10 @@
 
         /* Full-width image */
         .cs-full-img {
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-            margin: 4rem 0;
+            width: 100%;
+            height: auto;       
+            object-fit: initial; 
+            display: block;
         }
 
         .cs-full-img img {
@@ -540,7 +539,7 @@
         <!-- Full-width image -->
         <figure class="cs-full-img fade-up">
             <!-- Replace src with your actual screens / mockup image -->
-            <img src="fenwayhealth.jpg" alt="Fenway Health existing screens audit">
+            <img src="oldfenway.png" alt="Fenway Health existing screens audit">
             <figcaption>Existing app screens — heuristic evaluation</figcaption>
         </figure>
 
@@ -589,7 +588,7 @@
         <div class="cs-img-grid fade-up">
             <!-- Replace these with your actual design screens -->
             <img src="fenwayhealth.jpg" alt="New home screen design">
-            <img src="fenwayhealth.jpg" alt="Appointment booking flow">
+            <img src="fenwaymenu.png" alt="Login MyChart">
         </div>
 
         <!-- Solution -->
@@ -633,9 +632,9 @@
         <a href="portfolio.html">
             <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
         </a>
-        <a href="casestudy-discovery.html" class="cs-nav-next">
+        <a href="casestudy-grubhub.html" class="cs-nav-next">
             <span class="cs-nav-next-label">Next project</span>
-            <span class="cs-nav-next-title">Discovery Space →</span>
+            <span class="cs-nav-next-title">Grubhub Redesign →</span>
         </a>
     </nav>
 
