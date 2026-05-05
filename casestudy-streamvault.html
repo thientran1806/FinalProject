@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StreamVault | Case Study — Thien Tran</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #CC0000;
+    --dark: #0d0d0d;
+    --light: #f5f4f0;
+    --muted: #888;
+    --purple: #7c5cbf;
+    --purple-light: #a478e8;
+    --border: #e0ddd6;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--light);
+    color: var(--dark);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 2.5rem;
+    background: rgba(245,244,240,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+
+  /* HERO */
+  .hero {
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+    background: var(--dark);
+    min-height: 520px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(124,92,191,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 80% at 20% 80%, rgba(204,0,0,0.25) 0%, transparent 60%),
+      linear-gradient(160deg, #0d0d0d 40%, #1a0a2e 100%);
+  }
+
+  /* Subtle film grain */
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 4rem 2.5rem 3.5rem;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--purple-light);
+    margin-bottom: 1.2rem;
+    opacity: 0.9;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.0;
+    color: #fff;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--purple-light);
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .meta-item label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+
+  .meta-item span {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(124,92,191,0.5);
+    color: var(--purple-light);
+    background: rgba(124,92,191,0.1);
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--dark);
+    color: #fff;
+    padding: 2.5rem 2.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    border-bottom: 1px solid #222;
+  }
+
+  .stat {
+    text-align: center;
+    padding: 0 3.5rem;
+    border-right: 1px solid #333;
+    flex: 1;
+    max-width: 280px;
+  }
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--purple-light);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+  }
+
+  /* SECTIONS */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem;
+  }
+
+  .section + .section {
+    border-top: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-num::after {
+    content: '';
+    flex: 1;
+    max-width: 40px;
+    height: 1px;
+    background: var(--muted);
+    opacity: 0.4;
+  }
+
+  .section-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .section p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #3a3a3a;
+    margin-bottom: 1.2rem;
+    max-width: 680px;
+  }
+
+  /* FINDINGS GRID */
+  .findings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .finding-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .finding-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  }
+
+  .finding-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(204,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .finding-card h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+    letter-spacing: -0.01em;
+  }
+
+  .finding-card p {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* METHODOLOGY STEPS */
+  .method-steps {
+    margin-top: 2.5rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .method-step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  .step-num {
+    width: 48px;
+    height: 48px;
+    background: var(--dark);
+    color: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .method-step h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    color: var(--dark);
+  }
+
+  .method-step p {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* THEMES */
+  .themes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .theme-card {
+    background: var(--dark);
+    border-radius: 12px;
+    padding: 2rem;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .theme-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,92,191,0.35) 0%, transparent 70%);
+  }
+
+  .theme-label {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--red);
+    color: #fff;
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .theme-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+  }
+
+  .theme-card p {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.65);
+    margin: 0;
+  }
+
+  /* RECS */
+  .recs-list {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .rec-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--purple);
+    border-radius: 0 10px 10px 0;
+  }
+
+  .rec-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--purple);
+    border-radius: 50%;
+    margin-top: 0.55rem;
+    flex-shrink: 0;
+  }
+
+  .rec-item strong {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .rec-item span {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* FLOW SECTION */
+  .flow-section {
+    background: var(--dark);
+    color: #fff;
+    padding: 5rem 2.5rem;
+  }
+
+  .flow-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .flow-inner .section-num { color: rgba(255,255,255,0.4); }
+  .flow-inner .section-num::after { background: rgba(255,255,255,0.2); }
+  .flow-inner h2 { color: #fff; }
+  .flow-inner p { color: rgba(255,255,255,0.65); }
+
+  .flow-screens {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .flow-screen {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .flow-screen:hover { background: rgba(124,92,191,0.15); }
+
+  .flow-screen-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .flow-screen h4 {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+
+  .flow-screen p {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.45);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--purple-light);
+    font-size: 1rem;
+    opacity: 0.6;
+  }
+
+  /* REFLECTIONS */
+  .reflections-list {
+    margin-top: 2rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .reflection-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.2rem 1.5rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #3a3a3a;
+  }
+
+  .reflection-item::before {
+    content: '→';
+    color: var(--purple);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+
+  /* PROTOTYPE LINK */
+  .prototype-box {
+    margin-top: 2.5rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #1a0a2e, #0d0d0d);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .prototype-box p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    margin: 0;
+    max-width: 500px;
+  }
+
+  .prototype-box strong { color: #fff; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--purple);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .btn:hover { background: var(--purple-light); transform: translateY(-1px); }
+
+  /* NAV FOOTER */
+  .case-footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .case-footer a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--dark);
+    text-decoration: none;
+    opacity: 0.65;
+    transition: opacity 0.2s;
+  }
+  .case-footer a:hover { opacity: 1; }
+
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.35);
+    text-align: center;
+    font-size: 0.75rem;
+    padding: 1.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { gap: 1rem; }
+    .hero-content { padding: 3rem 1.25rem 2.5rem; }
+    .stats-bar { flex-direction: column; gap: 1.5rem; }
+    .stat { border-right: none; border-bottom: 1px solid #333; padding: 0 0 1.5rem; max-width: 100%; }
+    .stat:last-child { border-bottom: none; padding-bottom: 0; }
+    .section { padding: 3.5rem 1.25rem; }
+    .flow-section { padding: 3.5rem 1.25rem; }
+    .case-footer { padding: 2rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Thien Tran</a>
+  <ul class="nav-links">
+    <li><a href="#">About</a></li>
+    <li><a href="#">Portfolio</a></li>
+    <li><a href="#">Resume/CV</a></li>
+    <li><a href="#">Credits</a></li>
+    <li><a href="https://www.linkedin.com/in/trong-thien-tran-61931931b/" target="_blank">↗ LinkedIn</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Case Study — UX Research &amp; Redesign</p>
+    <h1 class="hero-title">StreamVault<br><em>UX Redesign</em></h1>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <label>Role</label>
+        <span>UX Researcher &amp; Designer</span>
+      </div>
+      <div class="meta-item">
+        <label>Course</label>
+        <span>UXII SP 2026</span>
+      </div>
+      <div class="meta-item">
+        <label>Tools</label>
+        <span>Figma, FigJam</span>
+      </div>
+      <div class="meta-item">
+        <label>Tags</label>
+        <div class="tags">
+          <span class="tag">Streaming</span>
+          <span class="tag">Accessibility</span>
+          <span class="tag">UX Research</span>
+          <span class="tag">Watch Party</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">51%</div>
+    <div class="stat-label">of users reported ADHD, requiring clearer navigation</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">61%</div>
+    <div class="stat-label">experienced cognitive impairments affecting browsing</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">70%</div>
+    <div class="stat-label">want to share content with friends via social media</div>
+  </div>
+</div>
+
+<!-- 01 OVERVIEW -->
+<div class="section">
+  <div class="section-num">01 — Overview</div>
+  <h2>Building a streaming interface that works for every kind of viewer</h2>
+  <p>
+    This UX research study set out to design a streaming movies and TV show platform that reduces confusion, simplifies navigation, and accommodates users with visual and cognitive impairments. The study prioritized features users actually want — including a watch party mode — while delivering smarter, personalized recommendations tailored to each viewer's individual tastes.
+  </p>
+  <p>
+    Three clear themes emerged from the research: a clean, minimalist home screen that reduces cognitive load; chat and social sharing features that connect friends around content; and a personalized taste window that learns what each user loves from day one.
+  </p>
+
+  <div class="findings-grid">
+    <div class="finding-card">
+      <div class="finding-icon">🧠</div>
+      <h4>High Impairment Prevalence</h4>
+      <p>51% ADHD, 61% cognitive impairments, and 42% color blindness shaped every design decision in this study.</p>
+    </div>
+    <div class="finding-card">
+      <div class="finding-icon">😵</div>
+      <h4>Navigation Overload</h4>
+      <p>Users complained of too much information on screen at once, and the interface didn't always respond where they expected.</p>
+    </div>
+    <div class="finding-card">
+      <div class="finding-icon">🔍</div>
+      <h4>Discovery Difficulty</h4>
+      <p>Users found it hard to surface shows and movies outside of what's already popular or heavily promoted.</p>
+    </div>
+    <div class="finding-card">
+      <div class="finding-icon">🎉</div>
+      <h4>Social Demand</h4>
+      <p>70% of users wanted to share content on social media — a strong signal for watch party and sharing features.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 02 FINDINGS -->
+<div class="section">
+  <div class="section-num">02 — Findings</div>
+  <h2>Where streaming apps fall short — and what users actually need</h2>
+  <p>
+    A competitive analysis benchmarked the current streaming landscape against Netflix, Amazon Prime Video, and Disney+ — examining color systems, content layouts, fonts, navigation patterns, and dark mode support. Three clear friction points surfaced across all platforms studied.
+  </p>
+
+  <div class="themes-grid">
+    <div class="theme-card">
+      <span class="theme-label">Point of Friction</span>
+      <h3>Interface Overload</h3>
+      <p>Widespread confusion — especially for less familiar users — caused by dense category rows, auto-playing previews, and unclear navigation cues.</p>
+    </div>
+    <div class="theme-card">
+      <span class="theme-label">Point of Friction</span>
+      <h3>Buried Content</h3>
+      <p>Users struggled to find shows and movies that aren't already popular. Recommendation algorithms favor trends over personal taste.</p>
+    </div>
+    <div class="theme-card">
+      <span class="theme-label">Point of Friction</span>
+      <h3>Eye Strain</h3>
+      <p>Extended viewing caused discomfort. Users preferred darker, lower-contrast interfaces — yet few apps provide adequate dark mode support.</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 2.5rem;">
+    <p style="font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;">Needs Statements</p>
+    <div class="recs-list">
+      <div class="rec-item">
+        <div class="rec-dot"></div>
+        <div>
+          <strong>Simplified navigation</strong>
+          <span>Users need a clutter-free interface so they can browse and enjoy content without frustration or cognitive overload.</span>
+        </div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-dot"></div>
+        <div>
+          <strong>Smarter recommendations</strong>
+          <span>Users need recommendations tailored to their actual viewing preferences so they can quickly discover shows and movies they'll genuinely enjoy.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 03 METHODOLOGY -->
+<div class="section">
+  <div class="section-num">03 — Methodology</div>
+  <h2>Research-driven from sketch to prototype</h2>
+  <p>
+    The study used a multi-method qualitative approach combining interviews, affinity diagramming, and journey mapping across four research phases — with four participants providing rich, observational data.
+  </p>
+
+  <div class="method-steps">
+    <div class="method-step">
+      <div class="step-num">1</div>
+      <div>
+        <h4>Affinity Diagrams</h4>
+        <p>Pain points from user interviews were collected and grouped thematically using FigJam, surfacing patterns in frustration, desire, and behavior across all participants.</p>
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="step-num">2</div>
+      <div>
+        <h4>Journey Mapping</h4>
+        <p>Emotional journeys were mapped across five stages: Awareness → Consideration → Decision → Service → Loyalty. Each user's satisfaction at every stage was charted and compared.</p>
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="step-num">3</div>
+      <div>
+        <h4>Competitive Analysis</h4>
+        <p>Netflix, Amazon Prime Video, and Disney+ were benchmarked across color, layout, font, buttons, illustration style, and dark mode — identifying gaps and opportunities for StreamVault.</p>
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="step-num">4</div>
+      <div>
+        <h4>Paper Prototyping & Testing</h4>
+        <p>Low-fidelity sketches were tested with users to validate the top-4 genre selection flow, the simplified home screen layout, and the watch party invitation pattern.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLOW (dark bg) -->
+<div class="flow-section">
+  <div class="flow-inner">
+    <div class="section-num">04 — Final Design</div>
+    <h2>A complete user flow — from landing page to watch party</h2>
+    <p>
+      The final high-fidelity prototype in Figma covers the full experience: a compelling landing page, streamlined sign-in with OTP verification, a personalization onboarding flow, multi-profile setup, a clean home screen, content detail pages, and a full watch party experience with real-time chat.
+    </p>
+
+    <div class="flow-screens">
+      <div class="flow-screen">
+        <div class="flow-screen-icon">🏠</div>
+        <h4>Landing Page</h4>
+        <p>Hero value prop, plan selection, and feature highlights</p>
+      </div>
+      <div class="flow-screen">
+        <div class="flow-screen-icon">🔐</div>
+        <h4>Sign In</h4>
+        <p>Email or mobile entry with OTP verification</p>
+      </div>
+      <div class="flow-screen">
+        <div class="flow-screen-icon">🎬</div>
+        <h4>Top 4 Selection</h4>
+        <p>Pick top genres to personalize recommendations immediately</p>
+      </div>
+      <div class="flow-screen">
+        <div class="flow-screen-icon">👤</div>
+        <h4>Profile Setup</h4>
+        <p>"Who's Watching?" — manage profiles for the whole family</p>
+      </div>
+      <div class="flow-screen">
+        <div class="flow-screen-icon">📺</div>
+        <h4>Home Screen</h4>
+        <p>3 focused categories, minimal scroll, hero feature content</p>
+      </div>
+      <div class="flow-screen">
+        <div class="flow-screen-icon">ℹ️</div>
+        <h4>Content Details</h4>
+        <p>Episodes, ratings, similar titles, and share options</p>
+      </div>
+      <div class="flow-screen">
+        <div class="flow-screen-icon">🔗</div>
+        <h4>Share Stream</h4>
+        <p>QR code or link to invite friends instantly</p>
+      </div>
+      <div class="flow-screen">
+        <div class="flow-screen-icon">🎉</div>
+        <h4>Watch Party</h4>
+        <p>Synchronized playback with real-time group chat</p>
+      </div>
+    </div>
+
+    <div class="prototype-box" style="margin-top: 2.5rem;">
+      <div>
+        <strong>View the full interactive prototype</strong>
+        <p>Explore all screens, transitions, and interactions in Figma.</p>
+      </div>
+      <a class="btn" href="#" target="_blank">StreamVault Prototype →</a>
+    </div>
+  </div>
+</div>
+
+<!-- 05 RECOMMENDATIONS -->
+<div class="section">
+  <div class="section-num">05 — Recommendations</div>
+  <h2>Four targeted design decisions with the biggest impact</h2>
+  <p>
+    Based on usability testing and the HBO Max design audit (cited as visual inspiration for its elegant use of gradient and top navigation), four prioritized recommendations were developed and refined in the prototype.
+  </p>
+
+  <div class="recs-list">
+    <div class="rec-item">
+      <div class="rec-dot"></div>
+      <div>
+        <strong>Move navigation to the top</strong>
+        <span>The left-rail icon menu was consistently missed by users. Placing the nav horizontally at the top — as seen in HBO Max — dramatically improves discoverability and follows standard web reading patterns.</span>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-dot"></div>
+      <div>
+        <strong>Add clear in-screen instructions</strong>
+        <span>Pages like the top-4 genre selector need contextual prompts so users understand what to do without trial and error. Instruction copy reduces confusion especially for users with cognitive impairments.</span>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-dot"></div>
+      <div>
+        <strong>Implement watch party with QR/link sharing</strong>
+        <span>70% of users wanted to watch with friends. The watch party feature — invite via QR code or link, synchronized playback, real-time chat — directly addresses the top social feature request from the study.</span>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-dot"></div>
+      <div>
+        <strong>Use subtle gradient and add a footer</strong>
+        <span>Drawing from the HBO Max visual reference, light gradients add cinematic depth without overwhelming the interface. A footer was added to all screens to anchor the layout and reduce user disorientation.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 06 REFLECTIONS -->
+<div class="section">
+  <div class="section-num">06 — Reflections</div>
+  <h2>What I learned</h2>
+
+  <div class="reflections-list">
+    <div class="reflection-item">
+      Designing for accessibility isn't a constraint — it's the brief. With 51% ADHD and 61% cognitive impairments in the study group, accessible design became the primary design direction, not an afterthought.
+    </div>
+    <div class="reflection-item">
+      Three categories on a home screen is a bold choice. Limiting the home screen to 3 content rows felt risky, but testing showed users felt less overwhelmed and more in control — simplicity earned trust.
+    </div>
+    <div class="reflection-item">
+      Onboarding is an opportunity, not a gate. The top-4 genre picker transforms sign-up friction into a personalization moment — users leave the flow with a platform that already feels curated for them.
+    </div>
+    <div class="reflection-item">
+      Social watching is a genuine unmet need. 70% of users wanting to share content wasn't just a nice-to-have — it revealed that streaming is a fundamentally social activity that current interfaces treat as solitary.
+    </div>
+    <div class="reflection-item">
+      Competitive audits are most useful when specific. Comparing Netflix, Prime, and Disney+ feature-by-feature (not just impressionistically) surfaced exact gaps — like the absence of dark mode or confusing icon-only navs.
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER NAV -->
+<div class="case-footer">
+  <a href="#">← Back to Portfolio</a>
+  <a href="#">Next Project: Discovery Space →</a>
+</div>
+
+<footer>
+  Copyright 2025 © Code by Thien Tran.
+</footer>
+
+</body>
+</html>
