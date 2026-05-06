@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Thien Tran | Portfolio</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d7e1a25fa7.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0d0d;
+            color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── NAV (mirrors your index.html style) ── */
+        header {
+            padding: 1.5rem 3rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(14px);
+            background: rgba(13, 13, 13, 0.75);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo a {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f0f0f0;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #f0f0f0;
+        }
+
+        /* ── PAGE HEADER ── */
+        .page-header {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 5rem 3rem 2rem;
+            width: 100%;
+        }
+
+        .page-header .label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+        }
+
+        .page-header h1 span {
+            color: #888;
+        }
+
+        .page-header p {
+            margin-top: 1.25rem;
+            font-size: 1rem;
+            color: #666;
+            max-width: 480px;
+            line-height: 1.7;
+        }
+
+        /* ── FILTER TABS ── */
+        .filters {
+            max-width: 1300px;
+            margin: 2.5rem auto 0;
+            padding: 0 3rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.45rem 1.1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: transparent;
+            color: #888;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            border-color: rgba(255,255,255,0.3);
+            color: #f0f0f0;
+        }
+
+        .filter-btn.active {
+            background: #f0f0f0;
+            color: #0d0d0d;
+            border-color: #f0f0f0;
+        }
+
+        /* ── GRID ── */
+        .portfolio-grid {
+            max-width: 1300px;
+            margin: 3rem auto 0;
+            padding: 0 3rem 6rem;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.25rem;
+        }
+
+        /* Card sizes — big, medium, small */
+        .card-wide   { grid-column: span 8; }
+        .card-medium { grid-column: span 4; }
+        .card-full   { grid-column: span 12; }
+        .card-third  { grid-column: span 4; }
+        .card-half   { grid-column: span 6; }
+
+        /* ── CARD ── */
+        .project-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            background: #1a1a1a;
+            aspect-ratio: 4/3;
+        }
+
+        .card-wide   { aspect-ratio: 16/9; }
+        .card-medium { aspect-ratio: 3/4; }
+        .card-third  { aspect-ratio: 4/3; }
+        .card-half   { aspect-ratio: 4/3; }
+
+        /* Image zoom on hover */
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        filter 0.55s ease;
+            filter: brightness(0.85);
+        }
+
+        .project-card:hover img {
+            transform: scale(1.08);
+            filter: brightness(1);
+        }
+
+        /* Overlay */
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(0,0,0,0.82) 0%,
+                rgba(0,0,0,0.2) 45%,
+                transparent 100%
+            );
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.6rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .card-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #aaa;
+            margin-bottom: 0.4rem;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.25;
+            color: #fff;
+        }
+
+        .card-wide .card-title  { font-size: 1.45rem; }
+        .card-full .card-title  { font-size: 1.8rem; }
+
+        /* Arrow icon that appears on hover */
+        .card-arrow {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+            backdrop-filter: blur(6px);
+        }
+
+        .card-arrow i {
+            font-size: 0.75rem;
+            color: #fff;
+        }
+
+        .project-card:hover .card-arrow {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .card-arrow:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        /* Placeholder gradient bg when no image yet */
+        .placeholder-1 { background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); }
+        .placeholder-2 { background: linear-gradient(135deg, #2d1b69, #11998e, #38ef7d); }
+        .placeholder-3 { background: linear-gradient(135deg, #4a0072, #e96c2c, #f7c52e); }
+        .placeholder-4 { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); }
+        .placeholder-5 { background: linear-gradient(135deg, #1d2b64, #f8cdda); }
+        .placeholder-6 { background: linear-gradient(135deg, #093028, #237a57); }
+        .placeholder-7 { background: linear-gradient(135deg, #360033, #0b8793); }
+
+        .placeholder-img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255,255,255,0.15);
+            transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card:hover .placeholder-img {
+            transform: scale(1.08);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            margin-top: auto;
+            padding: 1.5rem 3rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #444;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .card-wide, .card-medium, .card-full,
+            .card-third, .card-half {
+                grid-column: span 12;
+            }
+
+            .portfolio-grid {
+                padding: 0 1.5rem 4rem;
+            }
+
+            .page-header, .filters {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            header { padding: 1.25rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-bar">
+            <div class="logo">
+                <a href="index.html">Thien Tran</a>
+            </div>
+            <nav class="nav-links">
+                <a href="about.html">About</a>
+                <a href="portfolio.html" class="active">Portfolio</a>
+                <a href="TrongResume.pdf" target="_blank">Resume/CV</a>
+                <a href="credits.html">Credits</a>
+                <a href="https://www.linkedin.com/in/trong-thien-tran-61931931b/" target="_blank">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <p class="label">Selected Works</p>
+            <h1>Graphic Design <span>&amp; Visual Art</span></h1>
+            <p>A collection of brand identities, posters, typography, and digital experiences.</p>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="branding">Branding</button>
+            <button class="filter-btn" data-filter="poster">Poster</button>
+            <button class="filter-btn" data-filter="typography">Typography</button>
+            <button class="filter-btn" data-filter="ui">UI / Digital</button>
+            <button class="filter-btn" data-filter="illustration">Illustration</button>
+        </div>
+
+        <div class="portfolio-grid" id="grid">
+
+            <!-- Row 1: wide + medium -->
+            <div class="project-card card-wide" data-category="branding">
+                <div class="placeholder-img placeholder-1">◈</div>
+                <div class="card-overlay">
+                    <p class="card-tag">Branding · 2024</p>
+                    <h2 class="card-title">Lumina Studio — Brand Identity</h2>
+                </div>
+                <div class="card-arrow"><i class="fa-solid fa-arrow-up-right"></i></div>
+            </div>
+
+            <div class="project-card card-medium" data-category="poster">
+                <div class="placeholder-img placeholder-2">◉</div>
+                <div class="card-overlay">
+                    <p class="card-tag">Poster · 2024</p>
+                    <h2 class="card-title">Neon Drift Series</h2>
+                </div>
+                <div class="card-arrow"><i class="fa-solid fa-arrow-up-right"></i></div>
+            </div>
+
+            <!-- Row 2: three thirds -->
+            <div class="project-card card-third" data-category="typography">
+                <div class="placeholder-img placeholder-3">Aa</div>
+                <div class="card-overlay">
+                    <p class="card-tag">Typography · 2024</p>
+                    <h2 class="card-title">Void Typeface</h2>
+                </div>
+                <div class="card-arrow"><i class="fa-solid fa-arrow-up-right"></i></div>
+            </div>
+
+            <div class="project-card card-third" data-category="ui">
+                <div class="placeholder-img placeholder-4">⬡</div>
+                <div class="card-overlay">
+                    <p class="card-tag">UI Design · 2025</p>
+                    <h2 class="card-title">Nexus App Interface</h2>
+                </div>
+                <div class="card-arrow"><i class="fa-solid fa-arrow-up-right"></i></div>
+            </div>
+
+            <div class="project-card card-third" data-category="illustration">
+                <div class="placeholder-img placeholder-5">✦</div>
+                <div class="card-overlay">
+                    <p class="card-tag">Illustration · 2023</p>
+                    <h2 class="card-title">Dreamscapes Vol. I</h2>
+                </div>
+                <div class="card-arrow"><i class="fa-solid fa-arrow-up-right"></i></div>
+            </div>
+
+            <!-- Row 3: half + half -->
+            <div class="project-card card-half" data-category="branding">
+                <div class="placeholder-img placeholder-6">◈</div>
+                <div class="card-overlay">
+                    <p class="card-tag">Branding · 2023</p>
+                    <h2 class="card-title">Verdant — Sustainable Packaging</h2>
+                </div>
+                <div class="card-arrow"><i class="fa-solid fa-arrow-up-right"></i></div>
+            </div>
+
+            <div class="project-card card-half" data-category="poster">
+                <div class="placeholder-img placeholder-7">◍</div>
+                <div class="card-overlay">
+                    <p class="card-tag">Poster · 2025</p>
+                    <h2 class="card-title">Obscura Music Festival</h2>
+                </div>
+                <div class="card-arrow"><i class="fa-solid fa-arrow-up-right"></i></div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright 2025 &copy; Code by Thien Tran.</p>
+    </footer>
+
+    <script>
+        // Filter logic
+        const btns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.project-card');
+
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                cards.forEach(card => {
+                    const match = filter === 'all' || card.dataset.category === filter;
+                    card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                    if (match) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                        card.style.display = '';
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.97)';
+                        setTimeout(() => {
+                            if (btn.classList.contains('active') &&
+                                btn.dataset.filter !== 'all' &&
+                                card.dataset.category !== btn.dataset.filter) {
+                                card.style.display = 'none';
+                            }
+                        }, 300);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
